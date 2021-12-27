@@ -19,15 +19,15 @@
         <!-- Count -->
         <div class="count">
             <div class="countit patient-count">
-                <h3>Patients <?php echo $number_of_patients; ?></h3>
+                <h3>Appointments <?php echo $number_of_patients; ?></h3>
             </div>
 
             <div class="countit doctor-count">
-                <h3>Doctors <?php echo $number_of_doctors; ?></h3>
+                <h3>Finished <?php echo $number_of_doctors; ?></h3>
             </div>
 
             <div class="countit appointment-count">
-                <h3>Appointment <?php echo $number_of_appointments; ?></h3>
+                <h3>Upcoming <?php echo $number_of_appointments; ?></h3>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
         <!-- Lists -->
         <div class="lists">
             <div class="countit list-item-bottom">
-                <a href="./doctors_list.php">Doctor's List</a>
+                <a href="./book_appointment.php">New Patient</a>
             </div>
 
             <div class="countit list-item-bottom">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="countit list-item-bottom">
-                <a href="./appointment_list.php">Appointment List</a>
+                <a href="./patient_list.php">Follow Up</a>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
     <section class="right-section">
         <!-- Title -->
         <div class="right-section-title">
-            <h1> Recent Activity</h1>
+            <h1> Upcoming Appointments</h1>
         </div>
         <!-- List of items -->
         <div class="list-right">
