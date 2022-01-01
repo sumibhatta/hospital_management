@@ -10,7 +10,7 @@
             </p>
             <div class="index-buttons">
                <a href="./views/book_appointment.php"><button class="button-index-one">Book an Appointment</button></a>
-               <a href="./views/login.php"><button class="button-index-one haha">Sign In</button></a>
+               <a href="./views/choose.php"><button class="button-index-one haha">Sign In</button></a>
             </div>
         </div>
         <!-- <div class="right-block clearfix">
