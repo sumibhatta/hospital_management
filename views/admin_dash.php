@@ -1,4 +1,37 @@
-<?php include './header.php'; ?>
+<?php
+include './header.php';
+include '../dbconfig.php';
+// session_start();
+// I need Login Script to move on :C 
+
+
+//Retrieve number of rows in patients doctor and appointments 
+
+//queries
+$all_patient = 'SELECT * FROM patient';
+$all_doctor = 'SELECT * FROM doctor';
+$all_appointments_today = 'SELECT * FROM appointment WHERE date = CURDATE() OR date = "2022-01-02"';
+// Remove OR ... after active
+
+//store the results
+$result = mysqli_query($mysqli_connection, $all_patient);
+$result2 = mysqli_query($mysqli_connection, $all_doctor);
+$result3 = mysqli_query($mysqli_connection, $all_appointments_today);
+
+//store the number of rows
+$number_of_patients = mysqli_num_rows($result);
+$number_of_doctors = mysqli_num_rows($result2);
+$number_of_appointments = mysqli_num_rows($result3);
+// List of all appointments in array format and store
+$all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
+// print_r($all_appointment_list);
+
+//free the result form memory
+mysqli_free_result($result, $result2, $result3);
+
+//close the connection
+mysqli_close($mysqli_connection);
+?>
 
 
 <!-- Search -->
@@ -11,6 +44,7 @@
     </form>
     <!-- Salutation -->
     <div class="salutation">
+        <!-- Session ToT -->
         <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
     </div>
     <!-- Left Section -->
@@ -19,45 +53,57 @@
         <!-- Count -->
         <div class="count">
             <div class="countit patient-count">
-                <h3>Patients <?php echo $number_of_patients; ?></h3>
+                <h3>Patients</h3>
+                <br><br>
+                <h1><?php echo $number_of_patients; ?></h1>
             </div>
 
             <div class="countit doctor-count">
-                <h3>Doctors <?php echo $number_of_doctors; ?></h3>
+                <h3>Doctors</h3>
+                <br><br>
+                <h1><?php echo $number_of_doctors; ?></h1>
             </div>
 
             <div class="countit appointment-count">
-                <h3>Appointment <?php echo $number_of_appointments; ?></h3>
+                <h3>Appointment</h3>
+                <br><br>
+                <h1><?php echo $number_of_appointments; ?></h1>
             </div>
         </div>
 
         <!-- Image here -->
         <div class="image-here">
-            <img src="./" alt="IMAGE RE-->>> Remove hight width">
+            <img src="./img/test.png" alt="Testimg">
         </div>
 
         <!-- Lists -->
-        <div class="lists">
-            <div class="countit list-item-bottom">
-                <a href="./doctors_list.php">Doctor's List</a>
-            </div>
+        <a href="./views/doctors_list.php">
+            <div class="lists">
+                <div class="countit list-item-bottom">
+                    Doctor's List
+                </div>
+        </a>
 
+        <a href="./views/patient_list.php">
             <div class="countit list-item-bottom">
-                <a href="./patient_list.php">Patient's List</a>
+                Patient's List
             </div>
+        </a>
 
+        <a href="./views/all_appointments.php">
             <div class="countit list-item-bottom">
-                <a href="./appointment_list.php">Appointment List</a>
+                Appointment List
             </div>
-        </div>
+        </a>
+</div>
 
-    </section>
+</section>
 
 </div>
 
 <div class="right-row clearfix">
     <?php
-    echo 'Today: '.date('Y-m-d');
+    echo 'Today: ' . date('Y-m-d');
     ?>
 
     <!-- Right Section -->
@@ -72,7 +118,16 @@
             <!-- Now I know shall we make list of blocks -->
             <!-- We will repeat this with php but for now -->
             <ul>
+            <?php foreach($all_appointment_list as $appointment){?>
                 <li>
+                    <div class="countit right-list-items">
+                        <h1>
+                            <?php echo htmlspecialchars($appointment['visit_reason']) ?>
+                        </h1>
+                        <p>Appointment No: <?php echo htmlspecialchars($appointment['appointment_no']) ?></p>
+                    </div>
+                </li>
+                <!-- <li>
                     <div class="countit right-list-items">
                         <h1>
                             One
@@ -95,15 +150,8 @@
                         </h1>
                         <p>Here goes the description.</p>
                     </div>
-                </li>
-                <li>
-                    <div class="countit right-list-items">
-                        <h1>
-                            One
-                        </h1>
-                        <p>Here goes the description.</p>
-                    </div>
-                </li>
+                </li> -->
+                <?php } ?>
             </ul>
         </div>
 

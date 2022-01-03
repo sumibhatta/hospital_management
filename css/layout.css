@@ -206,7 +206,7 @@ footer {
   width: 920px;
   height: 174px;
   text-align: center;
-  padding: 20px;
+  /* padding: 20px; */
   margin: 20px 0 0 0;
 }
 
@@ -231,6 +231,7 @@ footer {
 .list-item-bottom {
   text-decoration: underline;
   position: relative;
+  padding: 75px 0px;
 }
 
 .list-item-bottom:hover {
