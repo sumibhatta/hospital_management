@@ -25,12 +25,6 @@ $number_of_appointments = mysqli_num_rows($result3);
 // List of all appointments in array format and store
 $all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
 // print_r($all_appointment_list);
-
-//free the result form memory
-mysqli_free_result($result, $result2, $result3);
-
-//close the connection
-mysqli_close($mysqli_connection);
 ?>
 
 
