@@ -29,7 +29,7 @@
                             <li ><a href="index.php">Home</a></li>
                             <li><a href="views/about.php">About</a></li>
                             <li><a href="views/contact.php">Contact</a></li>
-                            <li><a href="views/login.php">Login</a></li>
+                            <li><a href="views/choose.php">Login</a></li>
                             <li><a href="views/signup.php">Signup</a></li>
                         </ul>
                     </div>
