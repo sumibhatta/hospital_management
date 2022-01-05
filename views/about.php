@@ -1,3 +1,3 @@
-<?php include_once './views/header.php'?>
+<?php include_once 'header.php'?>
 <h1>This is Hospital Website.</h1>
-<?php include_once './views/footer.php'?>
+<?php include_once 'footer.php'?>
