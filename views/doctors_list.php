@@ -38,4 +38,5 @@ $all_doctors = mysqli_fetch_all($qsql, MYSQLI_ASSOC);
 
   <?php } ?>
 </table>
+<button>Add Doctor</button>
 <?php include './footer.php'; ?>

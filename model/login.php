@@ -12,12 +12,12 @@
             if($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
                 if($user_data['password'] === $password){
-                    $_SESSION['adminemail'] = $user_data['firstname'];  
-                    echo "<script>window.location = '../views/admin_dash.php';</script>";
+                    $_SESSION['adminemail'] = $user_data['email'];    
+                    header("location: ../views/admin_dash.php?error=sucsess");
+                    // echo "<script>window.location = '../views/admin_dash.php';</script>";
                     // echo 'login sucessful'.'<br>';
                     // echo 'hello '.$user_data['email'];
-                }
-                else{
+                }else{
                     header("location: ../views/admin_login.php?error=invalidpassword");
                     exit();
                 }
@@ -29,9 +29,12 @@
         else{
             header("location: ../views/admin_login.php?error=emptyfields");
             exit();
-
         }
         
+    }
+    else{
+        header("location: ../views/admin_login.php?error=invalidrequest");
+        exit();
     }
 
 
