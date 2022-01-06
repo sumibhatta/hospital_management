@@ -26,7 +26,7 @@ include '../dbconfig.php';
 // print_r($all_appointments);
 
 // Appointment ko pid sanga associated name nikalna 
- $sql1 = "SELECT firstname, lastname,appointment_no, d_firstname, d_lastname, department from hospitaldb.patient p INNER JOIN hospitaldb.appointment a on p.pid = a.pid INNER JOIN hospitaldb.doctor d on a.did = d.did";
+ $sql1 = "SELECT firstname, lastname,appointment_no, d_firstname, d_lastname, department, time from hospitaldb.patient p INNER JOIN hospitaldb.appointment a on p.pid = a.pid INNER JOIN hospitaldb.doctor d on a.did = d.did";
   $qsql1 = mysqli_query($mysqli_connection, $sql1);
   $all_appointments = mysqli_fetch_all($qsql1, MYSQLI_ASSOC);
   // print_r($all_appointments);
@@ -44,7 +44,7 @@ include '../dbconfig.php';
     <tr>
     <td> <?php echo $appointment['appointment_no'] ?></td>
     <td><?php echo $appointment['firstname']." ".$appointment['lastname'] ?></td>
-    <td>11:30 AM</td>
+    <td><?php echo $appointment['time'] ?></td>
     <td><?php echo $appointment['d_firstname']." ".$appointment['d_lastname'] ?></td>
     <td><?php echo $appointment['department']?></td>
   </tr>

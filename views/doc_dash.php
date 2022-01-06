@@ -1,4 +1,12 @@
-<?php include './header.php'; ?>
+<?php 
+include './header.php';
+session_start();
+
+if(!isset($_SESSION['firstname'])){
+    header("location: ../views/login.php");
+    exit();
+}
+?>
 
 
 <!-- Search -->
@@ -11,7 +19,7 @@
     </form>
     <!-- Salutation -->
     <div class="salutation">
-        <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1>Hello, <?php echo $_SESSION['firstname']; ?>!</h1>
     </div>
     <!-- Left Section -->
     <section class="left-section">
@@ -29,11 +37,11 @@
             <div class="countit appointment-count">
                 <h3>Upcoming <?php echo $number_of_appointments; ?></h3>
             </div>
-        </div>
+        </div>z
 
         <!-- Image here -->
         <div class="image-here">
-            <img src="./" alt="IMAGE RE-->>> Remove hight width">
+            <img src="../img/test.png" alt="IMAGE RE-->>> Remove hight width">
         </div>
 
         <!-- Lists -->

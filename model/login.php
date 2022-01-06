@@ -12,16 +12,24 @@
             if($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
                 if($user_data['password'] === $password){
-                    echo 'login sucessful'.'<br>';
-                    echo 'hello '.$user_data['email'];
+                    $_SESSION['adminemail'] = $user_data['firstname'];  
+                    echo "<script>window.location = '../views/admin_dash.php';</script>";
+                    // echo 'login sucessful'.'<br>';
+                    // echo 'hello '.$user_data['email'];
                 }
                 else{
-                    echo 'Incorrect email or password';
+                    header("location: ../views/admin_login.php?error=invalidpassword");
+                    exit();
                 }
+            }else{
+                header("location: ../views/admin_login.php?error=invalidcredintials");
+                exit();
             }
         }
         else{
-            echo 'Incorrect eamil or password before going in';
+            header("location: ../views/admin_login.php?error=emptyfields");
+            exit();
+
         }
         
     }
@@ -37,16 +45,21 @@
             if($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
                 if($user_data['password'] === $password){
-                    echo 'login sucessful'.'<br>';
-                    echo 'hello '.$user_data['firstname'];
+                    // echo 'login sucessful'.'<br>';
+                    // echo 'hello '.$user_data['d_firstname'];
+                    $_SESSION['firstname'] = $user_data['d_firstname'];
+                    echo "<script>window.location = '../views/doc_dash.php';</script>";
                 }
                 else{
-                    echo 'Incorrect email or password';
+                    header("location: ../views/doc_login.php?error=invalidpassword");
                 }
+            }else{
+                header("location: ../views/doc_login.php?error=invalidcredintials");
             }
         }
         else{
-            echo 'Incorrect eamil or password before going in';
+            header("location: ../views/doc_login.php?error=emptyfields");
+
         }
         
     }
@@ -63,17 +76,20 @@
             $result = mysqli_query($mysqli_connection,$sql);
             if($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
-                if($user_data['password'] === $password){
-                    $_SESSION['username'] = $_POST['phone'];
+                // if($user_data['password'] === $password){
+                if(password_verify($password, $user_data['password'])){
+                    $_SESSION['patient_number'] = $user_data['firstname'];
                     header('location:../views/patient_dash.php');
                 }
                 else{
-                    echo 'Incorrect phone_no or password';
+                    header("location: ../views/patient_login.php?error=invalidpassword");
                 }
+            }else{
+                header("location: ../views/patient  _login.php?error=invalidcredintials");
             }
         }
         else{
-            echo 'Incorrect phone_no or password before going in';
+            header("location: ../views/patient_login.php?error=emptyfields");
         }
         
     }

@@ -40,7 +40,7 @@ $all_patients = mysqli_fetch_all($qsql, MYSQLI_ASSOC);
       <td><?php echo $patient['phone_number'] ?></td>
       <td><?php echo $patient['address'] ?></td>
       <td> <a href="#shomwhere">click here</a></td>
-      <td><button>Update</button><button>Update</button></td>
+      <td><button>Update</button><button>Delete</button></td>
   </tr>
 <?php } ?>
 </table>

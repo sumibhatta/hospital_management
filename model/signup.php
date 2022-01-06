@@ -45,7 +45,7 @@ if (isset($_POST["register"])) {
     print_r($result);
 
 }else{
-  header("location: ../views/signup.php?=fuck");
+  header("location: ../views/signup.php?=error");
   print_r($result);
     
 }

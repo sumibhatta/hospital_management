@@ -14,7 +14,7 @@ session_start();
     </form>
     <!-- Salutation -->
     <div class="salutation">
-        <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1>Hello, <?php echo $_SESSION['patient_number']; ?>!</h1>
     </div>
     <div> Your Next Appointment is in:</div>
 </div>

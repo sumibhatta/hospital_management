@@ -1,11 +1,12 @@
 <?php
 include './header.php';
 include '../dbconfig.php';
-// session_start();
-// I need Login Script to move on :C 
+session_start();
 
-
-//Retrieve number of rows in patients doctor and appointments 
+if(!isset($_SESSION['adminemail'])){
+    header("location: ../views/admin_login.php");
+    exit();
+}
 
 //queries
 $all_patient = 'SELECT * FROM patient';
@@ -39,7 +40,7 @@ $all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
     <!-- Salutation -->
     <div class="salutation">
         <!-- Session ToT -->
-        <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1>Hello, <?php echo $_SESSION['adminemail']; ?>!</h1>
     </div>
     <!-- Left Section -->
     <section class="left-section">
@@ -108,9 +109,6 @@ $all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
         </div>
         <!-- List of items -->
         <div class="list-right">
-            <!-- I don't know what the heck I should do here  -->
-            <!-- Now I know shall we make list of blocks -->
-            <!-- We will repeat this with php but for now -->
             <ul>
             <?php foreach($all_appointment_list as $appointment){?>
                 <li>
@@ -121,30 +119,6 @@ $all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
                         <p>Appointment No: <?php echo htmlspecialchars($appointment['appointment_no']) ?></p>
                     </div>
                 </li>
-                <!-- <li>
-                    <div class="countit right-list-items">
-                        <h1>
-                            One
-                        </h1>
-                        <p>Here goes the description.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="countit right-list-items">
-                        <h1>
-                            One
-                        </h1>
-                        <p>Here goes the description.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="countit right-list-items">
-                        <h1>
-                            One
-                        </h1>
-                        <p>Here goes the description.</p>
-                    </div>
-                </li> -->
                 <?php } ?>
             </ul>
         </div>

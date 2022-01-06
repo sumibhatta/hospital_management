@@ -11,7 +11,7 @@
 $sql = "SELECT did,d_firstname,d_lastname, age,sex, contact, department from hospitaldb.doctor";
 $qsql = mysqli_query($mysqli_connection, $sql);
 $all_doctors = mysqli_fetch_all($qsql, MYSQLI_ASSOC);
-print_r($all_doctors);
+// print_r($all_doctors);
 ?>
 <!-- Table for List-->
 <table>
@@ -33,7 +33,7 @@ print_r($all_doctors);
     <td><?php echo $doctor['sex'] ?></td>
     <td><?php echo $doctor['department'] ?></td>
     <td><?php echo $doctor['contact'] ?></td>
-    <td><button>Update</button><button>Update</button></td>
+    <td><button>Update</button><button>Delete</button></td>
   </tr>
 
   <?php } ?>
