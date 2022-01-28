@@ -95,7 +95,7 @@ function createUser($mysqli_connection, $fname, $lastname, $phone, $password) {
   mysqli_stmt_bind_param($stmt, "sssss", $fname, $lastname, $phone, $hashedpassword);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
-  header("location: ../views/patient_login.php?error=successfullnowlogin");
+  header("location: ../views/patient_login.php?successfullnowlogin");
   exit();
 }
 ?>

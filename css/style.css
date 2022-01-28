@@ -44,7 +44,7 @@
 
   input:focus {
     outline: none;
-    color: grey;
+    color: #000;
   }
 
   ::placeholder {

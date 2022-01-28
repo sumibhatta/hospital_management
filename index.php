@@ -1,4 +1,12 @@
-<?php include './views/header.php'; ?>
+<?php
+session_start();
+if(isset($_SESSION['adminemail']) || isset($_SESSION['doctoremail'])) {
+    include './views/headerafterlogin.php';
+}else{
+include './views/header.php'; 
+}
+
+?>
 <div class="container-top">
     <div class="title">
         <div class="left-block clearfix">

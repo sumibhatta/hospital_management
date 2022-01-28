@@ -1,5 +1,5 @@
 <?php
-include './header.php';
+include './headerafterlogin.php';
 include '../dbconfig.php';
 session_start();
 
@@ -40,7 +40,7 @@ $all_appointment_list = mysqli_fetch_all($result3, MYSQLI_ASSOC);
     <!-- Salutation -->
     <div class="salutation">
         <!-- Session ToT -->
-        <h1>Hello, <?php echo $_SESSION['adminemail']; ?>!</h1>
+        <h1>Hello, Admin!</h1>
     </div>
     <!-- Left Section -->
     <section class="left-section">

@@ -1,9 +1,9 @@
 <?php 
-include './header.php';
+include './headerafterlogin.php';
 session_start();
 
-if(!isset($_SESSION['firstname'])){
-    header("location: ../views/login.php");
+if(!isset($_SESSION['doc_email'])){
+    header("location: ../views/doc_login.php");
     exit();
 }
 ?>
@@ -19,7 +19,7 @@ if(!isset($_SESSION['firstname'])){
     </form>
     <!-- Salutation -->
     <div class="salutation">
-        <h1>Hello, <?php echo $_SESSION['firstname']; ?>!</h1>
+        <h1>Hello, <?php echo $_SESSION['doc_firstname']; ?>!</h1>
     </div>
     <!-- Left Section -->
     <section class="left-section">

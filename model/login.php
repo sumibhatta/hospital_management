@@ -25,53 +25,54 @@
                 header("location: ../views/admin_login.php?error=invalidcredintials");
                 exit();
             }
-        }
-        else{
+        }else{
             header("location: ../views/admin_login.php?error=emptyfields");
             exit();
         }
+    }
         
-    }
-    else{
-        header("location: ../views/admin_login.php?error=invalidrequest");
-        exit();
-    }
+    // }else{
+    //     header("location: ../views/admin_login.php?error=invalidrequest");
+    //     exit();
+    // }
 
 
     // login for doctor
-    if(isset($_POST['loginDoc'])){
-        $email = $_POST['email'];
+    elseif(isset($_POST['loginDoc'])){
+        $doc_email = $_POST['email'];
         $password = $_POST['password'];
-        if(!empty($email) && !empty($password)){
-            $sql = "SELECT * FROM doctor WHERE email='$email' LIMIT 1";
+        if(!empty($doc_email) && !empty($password)){
+            $sql = "SELECT * FROM doctor WHERE email='$doc_email' LIMIT 1";
             $result = mysqli_query($mysqli_connection,$sql);
             if($result && mysqli_num_rows($result) > 0){
                 $user_data = mysqli_fetch_assoc($result);
                 if($user_data['password'] === $password){
-                    // echo 'login sucessful'.'<br>';
+                    echo 'login sucessful'.'<br>';
                     // echo 'hello '.$user_data['d_firstname'];
-                    $_SESSION['firstname'] = $user_data['d_firstname'];
+                    $_SESSION['doc_firstname'] = $user_data['d_firstname'];
+                    $_SESSION['doc_email'] = $user_data['email'];
                     echo "<script>window.location = '../views/doc_dash.php';</script>";
-                }
-                else{
+                }else{
                     header("location: ../views/doc_login.php?error=invalidpassword");
                 }
             }else{
                 header("location: ../views/doc_login.php?error=invalidcredintials");
             }
-        }
-        else{
+        }else{
             header("location: ../views/doc_login.php?error=emptyfields");
 
         }
-        
     }
+    // }else{
+    //     header("location: ../views/doc_login.php?error=invalidrequest");
+    //     exit();
+    // }
 
 
 
     //login for patient
 
-    if(isset($_POST['loginPatient'])){
+    elseif(isset($_POST['loginPatient'])){
         $phone = $_POST['phone'];
         $password = $_POST['password'];
         if(!empty($phone) && !empty($password) && is_numeric($phone)){
@@ -95,6 +96,9 @@
             header("location: ../views/patient_login.php?error=emptyfields");
         }
         
+    }else{
+        header("location: ../views/choose.php?error=invalidrequest");
+        exit();
     }
 
 

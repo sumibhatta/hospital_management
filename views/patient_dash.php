@@ -1,6 +1,12 @@
 <?php 
-include './header.php';
+include './headerafterlogin.php';
 session_start();
+
+if(!isset($_SESSION['patient_number'])){
+    header("location: ../views/patient_login.php");
+    exit();
+}
+
 ?>
 
 

@@ -1,4 +1,26 @@
-<?php include './header.php'; ?>
+<?php 
+include './header.php';
+include '../dbconfig.php';
+
+if(isset($_POST['submit'])){
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $department = $_POST['department'];
+    $doctor = $_POST['doctor'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $reason = $_POST['patient_problem'];
+    $query = "INSERT INTO `appointment`(`payment_amount`,`visit_reason` `date`, `time`) VALUES ('50',$reason,$phone,$date,$time)";
+    $result = mysqli_query($con,$query);
+    echo "hi";
+    if($result){
+        echo "<script>alert('Appointment Booked Successfully');</script>";
+    }
+    else{
+        echo "<script>alert('Appointment Booking Failed');</script>";
+    }
+}
+?>
 
 
 <!-- write your code here -->
@@ -8,13 +30,28 @@
 
 
 <div class="appointment-form form">
-    <form action="bookappointment.php" method="POST">
-        <label for="name"> Name:</label>
-        <input type="text" placeholder="John Doe" name="name" maxlength="80">
+    <form action="../model/signup.php" method="POST">
+        <label for="firstname"> First Name:</label>
+        <input type="text" placeholder="John" name="firstname" maxlength="80">
         <br />
+        <label for=""> Last Name:</label>
+        <input type="text" placeholder="Doe" name="lastname" maxlength="80">
+        <br />
+    <?php
+        $sql1 = "SELECT * FROM doctor WHERE `d_firstname` = '$firstname' AND `d_lastname` = '$lastname';";
+       $result = mysqli_query($mysqli_connection, $sql1);
+       if(!$result){
+           header("location: ./views/book_appointment.php?error=nodoctorfound");
+           exit();
+       }
 
-        <label for="specialization"> Specialization:</label>
-        <select name="specialization" id="specialization-list">
+    ?>
+        <label for="doctorsName"> Doctor's Name:</label>
+        <input type="text" placeholder="Pramila Don" name="doctorsName" maxlength="80">
+        <br />
+        
+        <label for="department"> Department:</label>
+        <select name="department" id="department-list">
             <option value="gyno">Not Sure</option>
             <option value="gyno">OB/GYN</option>
             <option value="allergists">Allergists</option>
@@ -31,10 +68,8 @@
             <option value="generalSurgery">General Surgeon</option>
         </select>
         <br />
+        <!-- We will do this looking form database table-->
 
-        <label for="doctorsName"> Doctor's Name:</label>
-        <input type="text" placeholder="Pramila Don" name="doctorsName" maxlength="80">
-        <br />
 
         <label for="name"> Appointment Date:</label>
         <input type="date" placeholder="2020-11-1" name="date" maxlength="80">

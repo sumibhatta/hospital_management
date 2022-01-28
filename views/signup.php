@@ -27,7 +27,7 @@
         <label for="repassword"> Re-Password:</label>
         <input type="password" placeholder="******" name="repassword">
         <br /><br>
-        <button class="button-index-one haha login-button" type="submit" name="register" value="register">Submit</button>
+        <button class="button-index-one haha login-button" type="submit" name="register" value="register">Signup</button>
     </form>
 </div>
 
